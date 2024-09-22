@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Pathfinder</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/styles.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/mobile.css}" rel="stylesheet" type="text/css"/>
+    <link href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+          integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+            integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+            crossorigin=""></script>
+</head>
+
+<body>
+
+<header th:fragment="header">
+    <nav class="main-nav">
+        <ul>
+            <li sec:authorize="!isAuthenticated()">
+                <a th:href="@{/}">Home</a>
+            </li>
+            <li sec:authorize="!isAuthenticated()">
+                <a th:href="@{/login}">Login</a>
+            </li>
+            <li sec:authorize="!isAuthenticated()">
+                <a th:href="@{/register}">Register</a>
+            </li>
+            <li sec:authorize="!isAuthenticated()">
+                <a th:href="@{/about}">About</a>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <a th:href="@{/routes/add}">Add new route</a>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <a th:href="@{/users/profile}">Profile</a>
+            </li>
+            <li sec:authorize="hasAuthority('ADMIN')">
+                <a href="/">Admin</a>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" th:method="POST">
+                    <button type="submit" class="btn-logout">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<footer class="footer bg-blur rounded" th:fragment="footer">
+    <div class="container-fluid text-center">
+        <div class="h5 text-white">
+            &copy; Ivan Lambrev, Irmuun Chimegbaatar - Spring Advanced Student 2023. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+</body>
+
+</html>
